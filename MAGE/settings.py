@@ -160,7 +160,7 @@ LOGIN_REDIRECT_URL = 'welcome'
 # Only used when force logging middleware is enabled (off by default):
 FORCE_LOGIN_EXCEPTIONS = ('login', 'logout', 'script_logout', 'script_login', 'script_login_post', 'force_login', 'openid', )
 
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE', 'django.core.files.storage.FileSystemStorage')
 AZURE_ACCOUNT_NAME = os.getenv('AZURE_ACCOUNT_NAME')
 AZURE_ACCOUNT_KEY = os.getenv('AZURE_ACCOUNT_KEY')

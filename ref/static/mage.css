@@ -6,19 +6,6 @@ html {
 	min-height: 100%;
 }
 
-body {
-	
-	  background-color: #efeff0 ;
-}
-
-body>.container-fluid {
-	padding: 60px 15px 0;
-	
-	
-	
-	
-}
-
 .ifjs {
 	display: none;
 }
@@ -567,7 +554,7 @@ h2.ssb-title {
 	
 	
 }
-/*begin style for the Types Installé */
+/*begin style for the Types Installï¿½ */
 .tabs-left {
   border-bottom: none;
   padding-top: 2px;
@@ -598,7 +585,7 @@ h2.ssb-title {
   display:block;
 }
 
-/*end style for the Types installé */
+/*end style for the Types installï¿½ */
 
 
 /******** acceuil squares ***********/
@@ -678,3 +665,217 @@ h2.title {
 }
 
 /******** fin  acceuil squares ***********/
+
+
+/*** CSS Rework ***/
+
+:root {
+	--main-bg-color: brown;
+	--main-text-color: #333;
+	--primary-color: #3E454C;
+	--primary-color-opposite: white;
+	--secondary-color: #2185C5;
+	--secondary-color-opposite: white;
+
+}
+
+h1.page-title {
+	font-size: 22px;
+}
+
+.dashboard {
+	padding: 10px 10px;
+}
+
+.dashboard .section-title {
+	font-size: 16px;
+	text-transform: uppercase;
+	color: var(--main-text-color);
+	margin-top: 15px;
+}
+
+.dashboard .tile {
+	overflow: hidden;
+	width: 120px;
+	height: 120px;
+	margin-right: 1px;
+	margin-top: 5px;
+	margin-bottom: 0;
+	margin-left: 0;
+	padding: 10px;
+	vertical-align: top;
+	position: relative;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.dashboard .tile > i {
+	font-size: 20px;
+	display: block;
+	text-align: right;
+}
+
+.dashboard .tile-title {
+	font-size: 14px;
+}
+
+.dashboard .tile-title:first-child {
+	margin-top: 0;
+}
+
+.dashboard .tile-primary {
+	background: var(--primary-color);
+	color: var(--primary-color-opposite);
+	border: 2px solid var(--primary-color);
+}
+
+.dashboard .tile-secondary {
+	background: var(--secondary-color);
+	color: var(--secondary-color-opposite);
+	border: 2px solid var(--secondary-color);
+}
+
+.dashboard .tile-description {
+	font-size: 12px;
+}
+
+.dashboard .tile.tile-primary:hover, .dashboard .tile.tile-primary:focus {
+	background: var(--primary-color-opposite);
+	color: var(--primary-color);
+	text-decoration: none;
+}
+
+.dashboard .tile.tile-secondary:hover, .dashboard .tile.tile-secondary:focus {
+	background: var(--secondary-color-opposite);
+	color: var(--secondary-color);
+	text-decoration: none;
+}
+
+/* Sidebar */
+#sidebar-container {
+	min-height: 100vh;
+	background-color: var(--secondary-color);
+	padding: 0;
+	padding-left: 10px;
+	padding-right: 5px;
+	font-size: 0.9rem;
+}
+
+#sidebar-container ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+#sidebar-container > ul > li:not(:first-child) {
+	margin-top: 10px;
+}
+
+#sidebar-container > ul > li {
+	color: var(--primary-color);
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#sidebar-container img {
+	max-width: 25px;
+	max-height: 25px;
+	padding-right: 5px;
+}
+
+#sidebar-container li a {
+	color: var(--secondary-color-opposite);
+	text-transform: none;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.sidebar-expanded {
+	width: 300Px;
+}
+
+
+#main-row {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+thead, th {
+	background-color: var(--primary-color);
+	color: var(--primary-color-opposite);
+}
+
+.edit-column {
+	width: 50px;
+	font-size: 20px;
+	text-align: center;
+}
+
+.no-border td, .no-border th {
+	border: none !important;
+}
+
+#main-area h2 {
+	font-size: 20px;
+}
+
+#main-area h3 {
+	font-size: 16px;
+}
+
+.graph {
+	border: black 1px solid;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	background: white;
+	z-index: 1;
+}
+
+.graph .zoom-graph {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height: 40px;
+	width: 40px;
+	background: var(--primary-color);
+	color: var(--primary-color-opposite);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.graph .zoom-graph i {
+	font-size: 25px;
+}
+
+.graph svg {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.graph.expanded {
+	position: fixed;
+	height: initial;
+	width: initial;
+	top: 20px;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
+}
+
+.graph.expanded .fa-expand {
+	display: none;
+}
+
+.graph .fa-compress {
+	display: none;
+}
+
+.graph.expanded .fa-compress {
+	display: block;
+}
+

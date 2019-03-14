@@ -12,127 +12,124 @@
 {% cache 1 welcome_all %}
 <!-- ajouter 60 au lieu de 1 -->
 
-<div style='color: white;' class='row'>
+<div class='row dashboard'>
+    <div class='col-lg-6 col-md-12'>
+        <h2 class='section-title'>Les environnements</h2>
+        <div class='row'>
+            <a href="{% url 'ref:cartoform' %}" class="tile tile-primary"><i class="fas fa-map-marked"></i>
+                <h3 class="tile-title">Carte interactive</h3></a>
+
+            <a href="{% url 'ref:grfull' %}" class="tile tile-primary"><i class="fas fa-map"></i>
+                <h3 class="tile-title">Carte générale</h3></a>
+
+            <a href="{% url 'ref:new_item' %}" class="tile tile-primary"><i class="fas fa-cogs"></i>
+                <h3 class="tile-title">Créer un élément de référentiel</h3></a>
+
+            <a href="{% url 'ref:backuped' %}" class="tile tile-primary"><i class="fas fa-save"></i>
+                <h3 class="tile-title">Eléments sauvegardés</h3></a>
+
+            <a href="{% url 'ref:shared_ci' %}" class="tile tile-primary"><i class="fas fa-share-alt"></i>
+                <h3 class="tile-title">Composants mutualisés</h3></a>
+        </div>
+        <div class="row">
+            {% for envt in envts %}
+                <a href="{% url 'ref:envt' envt.id %}" class="tile tile-secondary">
+                    <h3 class="tile-title">{{ envt.name }}</h3>
+                    <p class="tile-description">{{ envt.description }}</p></a>
+            {% endfor %}
+        </div>
+    </div>
 
 
-<div class='col-sm-5'>
-	<div style='color: white;' class='row'>
-		<div class='t2' style='color: black;'>Les environnements</div>
-	</div>
-	<div style='color: white;' class='row'>	
-		<a class='metSquaree homeCoulour1' href="{% url 'ref:cartoform' %}"><div class="ssb-iconn" > <i class="fas fa-map-marked"  style="margin-left: 30px" ></i> </div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Carte interactive </h2> </a>
-		
-		<a class='metSquaree homeCoulour1' href="{% url 'ref:grfull' %}"><div class="ssb-iconn" > <i class="fas fa-map" style="margin-left: 30px"></i> </div>
-        <h2 class="ssb-title" style="  font-size: 8px; "> Carte générale</h2> </a>
-		
-		<a class='metSquaree homeCoulour1' href="{% url 'ref:new_item' %}"><div class="ssb-iconn" > <i class="fas fa-cogs" style="margin-left: 30px"></i> </div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Créer un élément de référentiel</h2> </a>
-        
-        <a class='metSquaree homeCoulour1' href="{% url 'ref:backuped' %}"><div class="ssb-iconn" > <i class="fas fa-save" style="margin-left: 30px"></i> </div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Eléments sauvegardés</h2> </a>
-        
-        <a class='metSquaree homeCoulour1' href="{% url 'ref:shared_ci' %}"><div class="ssb-iconn" > <i class="fas fa-share-alt" style="margin-left: 30px" ></i> </div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Composants mutualisés</h2> </a>
-        
-       
-       
-        
-        
-		<div>
-		{% for envt in envts %}
-		<a class='metSquare' href="{% url 'ref:envt' envt.id %}"  style="background-color: #3399CC; color: white;"> {{envt.name}}<div class='metSquareLong annotation'>{{envt.description}}</div></a>	
-		{%endfor %}
-		</div>
-	</div>
+    <div class='col-lg-6 col-md-12'>
+        <div class='row'>
+            <h2 class='section-title'>Gestion de configuration</h2>
+        </div>
+        <div class='row'>
+            <a href="{% url 'scm:lc_installs_envts' %}" class="tile tile-primary"><i class="fas fa-code-branch"></i>
+                <h3 class="tile-title">Synthèse des versions courantes</h3></a>
+
+            <a href="{% url 'scm:deliveries' %}" class="tile tile-primary"><i class="fas fa-truck"></i>
+                <h3 class="tile-title">Livraisons disponibles à l'installation</h3></a>
+
+            <a href="{% url 'scm:delivery_create' %}" class="tile tile-primary"><i class="fas fa-box-open"></i>
+                <h3 class="tile-title">Référencer une livraison</h3></a>
+
+            <a href="{% url 'scm:tag_list' %}" class="tile tile-primary"><i class="fas fa-tags"></i>
+                <h3 class="tile-title">Tags</h3></a>
+
+            <a href="{% url 'scm:backup_list' %}" class="tile tile-primary"><i class="fas fa-save"></i>
+                <h3 class="tile-title">Sauvegardes disponibles</h3></a>
+
+            <a href="{% url 'scm:lc_list' %}" class="tile tile-primary"><i class="fas fa-code-branch"></i>
+                <h3 class="tile-title">Versions disponibles</h3></a>
+        </div>
+        <div class="row">
+            {% for envt in envts %}
+                {% if envt.managed %}
+                    <a href="{% url 'scm:envtinstallhist' envt.name %}" class="tile tile-secondary">
+                        <h3 class="tile-title">Historique {{ envt.name }}</h3>
+                        <p class="tile-description">{{ latest_setname|get_item:envt.name }}<br/>{{ latest_date|get_item:envt.name|date:"d/m H:i" }}
+                        </p></a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+{#    <div class='col-sm-2'>#}
+{#        <div style='color: white;' class='row'>#}
+{#            <div class='t2' style='color: black;'>{{ team_links_title }}</div>#}
+{#        </div>#}
+{#        <div style='color: white;' class='row'>#}
+{#            {% for link in team_links %}#}
+{#                <a style="color: white;" class='metSquaree homeCoulour1' href="{{ link.url }}">#}
+{#                    <div class="ssb-iconn"><i class="fas fa-link" style="margin-left: 30px"></i></div>#}
+{#                    <h3 class="ssb-title" style="  font-size: 8px; ">{{ link.legend|safe }}</h3></a>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{##}
+{#    <div class='col-sm-2'>#}
+{#        <div style='color: white;' class='row'>#}
+{#            <div class='t2' style='color: black;'>Aides scripting</div>#}
+{#        </div>#}
+{#        <div style="color: white;" class='row'>#}
+{#            <a class='metSquaree homeCoulour2' href="{% url 'ref:types' %}">#}
+{#                <div class="ssb-iconn"><i class="fas fa-info" style="margin-left: 35px"></i></div>#}
+{#                <h3 class="ssb-title" style="  font-size: 8px; ">Types de composants installés</h3></a>#}
+{##}
+{#            <a class='metSquaree homeCoulour2' href="{% url 'ref:mqltester' %}">#}
+{#                <div class="ssb-iconn"><i class="fas fa-database" style="margin-left: 30px"></i></div>#}
+{#                <h3 class="ssb-title" style="  font-size: 8px; ">Requêteur MQL</h3></a>#}
+{##}
+{##}
+{#            <a class='metSquaree homeCoulour2' href="{% url 'ref:types_details' %}">#}
+{#                <div class="ssb-iconn"><i class="far fa-list-alt" style="margin-left: 30px"></i></div>#}
+{#                <h3 class="ssb-title" style="  font-size: 8px; ">Détail des composants installés</h3></a>#}
+{##}
+{##}
+{#            <a class='metSquaree homeCoulour2' href="{% url 'ref:urls' %}">#}
+{#                <div class="ssb-iconn"><i class="fas fa-file-signature" style="margin-left: 30px"></i></div>#}
+{#                <h3 class="ssb-title" style="  font-size: 8px; ">API web partielle pour scripts</h3></a>#}
+{##}
+{##}
+{#            <a class='metSquaree homeCoulour2' href="{% url 'ref:cartostructure' %}">#}
+{#                <div class="ssb-iconn"><i class="fas fa-chart-area" style="margin-left: 30px"></i></div>#}
+{#                <h3 class="ssb-title" style="  font-size: 8px; ">Graphe des types de composants</h3></a>#}
+{##}
+{#        </div>#}
+{#        <div class='row'>#}
+{#            {% for envt in templates %}#}
+{#                <a class='metSquare' href="{% url 'ref:envt' envt.id %}">Template {{ envt.name }}#}
+{#                    <div class='metSquareLong annotation'>{{ envt.description }}</div>#}
+{#                </a>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+
 </div>
-
-
-<div class='col-sm-3'>
-	<div style='color: white;' class='row'>
-		<div class='t2' style='color: black;'>Gestion de configuration</div>
-	</div>
-	<div style='color: white;' class='row'>	
-		<a style ="color: white;" class='metSquaree homeCoulour2 ' href="{% url 'scm:lc_installs_envts' %}"><div class="ssb-iconn" > <i class="fas fa-code-branch" style="margin-left: 30px"></i> </div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Synthèse des versions courantes</h2> </a>
-        
-        
-		<a style ="color: white;"class='metSquaree homeCoulour2' href="{% url 'scm:deliveries' %}"><div class="ssb-iconn" > <i class="fas fa-truck"  style="margin-left: 30px"></i></div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Livraisons disponibles à l'installation</h2> </a>
-        
-		<a style ="color: white;"class='metSquaree homeCoulour2' href="{% url 'scm:delivery_create' %}"><div class="ssb-iconn" > <i class="fas fa-box-open" style="margin-left: 30px" ></i></div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Référencer une livraison</h2> </a>
-        
-        
-		<a style ="color: white;"class='metSquaree homeCoulour2' href="{% url 'scm:tag_list' %}"><div class="ssb-iconn" > <i class="fas fa-tags" style="margin-left: 30px" ></i></div>
-        <h2 class="ssb-title" style="  font-size: 8px; margin-left: 30px; ">Tags</h2> </a>
-        
-        
-		<a style ="color: white;"class='metSquaree homeCoulour2' href="{% url 'scm:backup_list' %}"><div class="ssb-iconn" > <i class="fas fa-save" style="margin-left: 30px"></i></div>
-        <h2 class="ssb-title" style=" font-size: 8px; ">Sauvegardes disponibles</h2> </a>
-        
-        
-		<a style ="color: white;" class='metSquaree homeCoulour2' href="{% url 'scm:lc_list' %}"><div class="ssb-iconn" > <i class="fas fa-code-branch" style="margin-left: 30px"></i> </div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Versions disponibles</h2> </a>
-        
-	
-	<div>
-		
-		{% for envt in envts %}
-			{% if envt.managed %}
-				<a  style ="color: white;  background-color: #3399CC; " class='metSquare' href="{% url 'scm:envtinstallhist' envt.name %}" >Historique {{envt.name}}<div class='metSquareLong annotation'>{{latest_setname|get_item:envt.name}}<br/>{{latest_date|get_item:envt.name|date:"d/m H:i"}}</div></a>
-			{% endif %}	
-		{%endfor %}
-		</div>
-	</div>
-</div>
-
-
-<div class='col-sm-2'>
-	<div style='color: white;' class='row'>
-		<div class='t2' style='color: black;'>{{team_links_title}}</div>
-	</div>
-	<div style='color: white;' class='row'>	
-	{% for link in team_links %}
-		<a  style ="color: white;"class='metSquaree homeCoulour1' href="{{ link.url }}"><div class="ssb-iconn" > <i class="fas fa-link" style="margin-left: 30px"></i> </div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">{{ link.legend|safe }}</h2> </a>
-	{% endfor %}
-	</div>
-</div>
-
-
-<div class='col-sm-2'>
-	<div style='color: white;' class='row'>
-		<div class='t2' style='color: black;'>Aides scripting</div>
-	</div>
-	<div style="color: white;" class='row'>	
-		<a class='metSquaree homeCoulour2' href="{% url 'ref:types' %}"><div class="ssb-iconn" > <i class="fas fa-info" style="margin-left: 35px"></i></div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Types de composants installés</h2> </a>
-        
-		<a class='metSquaree homeCoulour2' href="{% url 'ref:mqltester' %}"><div class="ssb-iconn" > <i class="fas fa-database" style="margin-left: 30px"></i></div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Requêteur MQL</h2> </a>
-        
-        
-		<a class='metSquaree homeCoulour2' href="{% url 'ref:types_details' %}"><div class="ssb-iconn" > <i class="far fa-list-alt" style="margin-left: 30px"></i></div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Détail des composants installés</h2> </a>
-        
-        
-		<a class='metSquaree homeCoulour2' href="{% url 'ref:urls' %}"><div class="ssb-iconn" > <i class="fas fa-file-signature" style="margin-left: 30px"></i></div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">API web partielle pour scripts</h2> </a>
-        
-
-		<a class='metSquaree homeCoulour2' href="{% url 'ref:cartostructure' %}"><div class="ssb-iconn"> <i class="fas fa-chart-area" style="margin-left: 30px"></i></div>
-        <h2 class="ssb-title" style="  font-size: 8px; ">Graphe des types de composants</h2> </a>
-        
-	</div>
-	<div class='row' >
-	{% for envt in templates %}
-		<a class='metSquare' href="{% url 'ref:envt' envt.id %}" >Template {{envt.name}}<div class='metSquareLong annotation'>{{envt.description}}</div></a>	
-	{%endfor %}
-	</div>
-</div>
-
-</div> 
 
 {% endcache %}
 {% endblock content %}
