@@ -155,22 +155,26 @@
 
 
     <div id="main-row" class='row'>
+        {% block sidebar %}
         <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
             <ul>
-                <li>Actions
+                {% block fraquentActionsParent %}
+                    <li>Actions
                     <ul>
-                        {% block frequentActionsButtons %}{% endblock %}
+                        {% block frequentActionsButtons %}
+
+                        {% endblock %}
                     </ul>
                 </li>
+                {% endblock %}
                 {% block extend_sidebar %}
                 {% endblock %}
             </ul>
         </div>
+        {% endblock %}
 
         <div id="main-area" class="col">
-            {% block sidebar %}
-                <h1 class="page-title">{% block maintitle %}{% endblock %}</h1>
-            {% endblock %}
+            <h1 class="page-title">{% block maintitle %}{% endblock %}</h1>
 
             {% block content %}{% endblock content %}
         </div>
