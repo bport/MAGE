@@ -8,11 +8,6 @@
 <script type="text/javascript" src='{% static "dagre-d3.min.js" %}'></script>
 <script type="text/javascript" src='{% static "jquery-1.11.2.min.js" %}'></script>
 <script type="text/javascript">
-function refresh_graph()
-{
-	
-}
-
 $(document).ready(function()
 {
 	$.ajax(
@@ -30,10 +25,14 @@ $(document).ready(function()
 </script>
 {% endblock scripts %}
 
+{% block sidebar %}
+    {# No sidebar #}
+{% endblock %}
 {% block content %}
-
-<svg width=5024 height=5024>
-    <g transform="translate(20,20) scale(0.7)"/>
-</svg>
+    <div class="graph">
+        <svg width=5024 height=5024>
+            <g transform="translate(20,20) scale(0.7)"/>
+        </svg>
+    </div>
 
 {% endblock content %}

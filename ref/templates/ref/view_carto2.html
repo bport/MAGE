@@ -36,54 +36,29 @@ $(document).ready(function()
 {% block fraquentActionsParent %}
 {% endblock %}
 {% block extend_sidebar %}
-		<button id='refresh' class="btn btn-success" style="width: 100%" >Refresh</button>
-		<br><br>
+    <button id='refresh' class="btn btn-success" style="width: 100%">Refresh</button>
+    <br><br>
 
 
-		<form id='ff'>
-		 <div style ="background-color: rgba(95,96,96,1); color: rgba(201,195,195,1); font-size: 15pt; " >{{form.envts.label}}</div>
-
-		<div style="background-color: 	rgba(160,164,165,0.25); padding-left: 2px;">{{form.envts}}</div>
-
-	    <br>
-	      <div style ="background-color: rgba(95,96,96,1); color: rgba(201,195,195,1); font-size: 15pt;" >{{form.models.label}}</div>
-	      <div style="background-color: 	rgba(160,164,165,0.25); padding-left: 2px; ">{{form.models}}</div>
-	    <br><br>
-
-
-		 <div style ="background-color: rgba(95,96,96,1); color: rgba(201,195,195,1); font-size: 15pt;" >{{form.reltypes.label}}</div>
-
-		<div style="background-color: 	rgba(160,164,165,0.25); padding-left: 2px;">{{form.reltypes}}</div>
-
-	    <br>
-	     <div style ="background-color: rgba(95,96,96,1); color: rgba(201,195,195,1); font-size: 15pt;" >{{form.relRecursion.label}}</div>
-
-		<div style="background-color: 	rgba(160,164,165,0.25); padding-left: 2px; ">{{form.relRecursion}}</div>
-
-
-
-
-	      <br>
-
-	      <div style ="background-color: rgba(95,96,96,1); color: rgba(201,195,195,1); font-size: 11pt;" >{{form.collapseThr.label}}</div>
-
-		<div style="background-color: 	rgba(160,164,165,0.25); padding-left: 2px; ">{{form.collapseThr}}</div>
-
-
-
-	    	    <br>
-
-
-	    	        <div style ="background-color: rgba(95,96,96,1); color: rgba(201,195,195,1); font-size: 11pt;" >{{form.include_deleted.label}}</div>
-
-		<div style="background-color: 	rgba(160,164,165,0.25); padding-left: 2px;">{{form.include_deleted}}</div>
-
-
-
-
-
-
-		</form>
+    <form id='ff'>
+        <div>{{ form.envts.label }}</div>
+        <div>{{ form.envts }}</div>
+        <br>
+        <div>{{ form.models.label }}</div>
+        <div>{{ form.models }}</div>
+        <br><br>
+        <div>{{ form.reltypes.label }}</div>
+        <div>{{ form.reltypes }}</div>
+        <br>
+        <div>{{ form.relRecursion.label }}</div>
+        <div>{{ form.relRecursion }}</div>
+        <br>
+        <div>{{ form.collapseThr.label }}</div>
+        <div>{{ form.collapseThr }}</div>
+        <br>
+        <div>{{ form.include_deleted.label }}</div>
+        <div>{{ form.include_deleted }}</div>
+    </form>
 
 {% endblock %}
 
